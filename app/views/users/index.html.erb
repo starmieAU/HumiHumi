@@ -1,0 +1,10 @@
+<div class="center jumbotron">
+  <div class="text-center">
+    <% if logged_in? %>
+      <h1>こんにちは、<%=  current_user.auth_name %>さん</h1>
+      <h3>ユーザー用ページです。</h3>
+    <% else %>
+      <h3>ログインしてください</h3>
+    <% end %>
+  </div>
+</div>

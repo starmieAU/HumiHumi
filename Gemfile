@@ -57,3 +57,5 @@ group :production do
 end
 
 gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
