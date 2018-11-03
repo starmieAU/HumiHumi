@@ -59,3 +59,5 @@ end
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
+
+gem 'kaminari'
