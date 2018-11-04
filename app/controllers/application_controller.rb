@@ -17,4 +17,29 @@ class ApplicationController < ActionController::Base
     return if logged_in?
     redirect_to root_path, alert: "ログインしてください"
   end
+  
+  def read(result)
+    uid = nil
+    title = result['title']
+    subtitle = result['subTitle']
+    authors = result['author']
+    publisher = result['publisherName']
+    published_date = result['salesDate']
+    description = result['itemCaption']
+    image_url = result['mediumImageUrl']&.gsub('?_ex=120x120', '') || "/images/no_image.png"
+    isbn_10 = nil
+    isbn_13 = result['isbn']
+    {
+      uid: uid,
+      title: title,
+      subtitle: subtitle,
+      authors: authors,
+      publisher: publisher,
+      published_date: published_date,
+      description: description,
+      image_url: image_url,
+      isbn_10: isbn_10,
+      isbn_13: isbn_13,
+    }
+  end
 end

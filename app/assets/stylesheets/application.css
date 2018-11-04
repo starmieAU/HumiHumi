@@ -1,8 +1,69 @@
 @charset "utf-8";
 
+/* body */
+body {
+  background: #f2f2f2;
+}
+footer {
+  margin-top: 40px;
+}
+
+/* navbar */
 .navbar {
-  background-color: #fff;
+  background-color: #b0ffc0;
 }
-.navbar-image img{
-  height: 20px;
+.navbar-header img {
+  margin-top: 5px;
+  height: 40px;
 }
+
+/* search */
+.search {
+  margin-bottom: 20px;
+}
+
+/* book */
+.book{
+  background-color: #ffffff;
+  border: 1px solid #555;
+  margin: 5px;
+}
+.book .row .book-image {
+  border-right: 1px solid #555;
+  background-color: #aaa;
+}
+.book .row .book-image img {
+  height: 150px;
+}
+.book-info p{
+  margin:0px;
+}
+p.book-title {
+  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin-top:10px;
+  height: 60px;
+}
+p.book-authors {
+  height: 40px;
+}
+
+/*book show 画面*/
+
+
+.book-show-body{
+  background-color: #ffffff;
+  border: 1px solid #555;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.book-common-image img{
+  max-height: 300px;
+}
+
+
+
+/* users */

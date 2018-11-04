@@ -1,0 +1,34 @@
+<div class="row">
+  <% if books.present? %>
+    <div class="col-xs-12">
+      <h3>検索結果</h3>
+    </div>
+    <% books.each do |book| %>
+      <div class="book col-xs-12">
+        <div class="row">
+          <div class="col-xs-4 book-image">
+            
+            <%= form_tag(books_path) do %>
+              <%= hidden_field_tag :isbn_13, book.isbn_13 %>
+              <%= image_submit_tag book.image_url, class: 'img-responsive center-block' %>
+            <% end %>
+            
+          </div>
+          <div class="col-xs-8 book-info">
+            <p class="book-title lead"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
+            <p class="book-authors"><%= book.authors%></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @books %>
+  <% else %>
+    <div class="col-xs-12">
+      <h3>検索結果は０件です。</h3>
+      <p>申し訳ありません、入力に間違いがないか確認してください。</p>
+      <p>「 」(半角スペース)でのor検索やあいまい検索にはまだ対応できていません。</p>
+      <p>通常検索では「書籍タイトル」または「著者名」で検索しています。</p>
+      <p>詳細検索では「書籍タイトル」、「著者名」、「ISBN13」を組み合わせた検索が可能です。</p>
+    </div>
+  <% end %>
+</div>

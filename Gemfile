@@ -64,3 +64,6 @@ gem 'omniauth-twitter'
 gem 'kaminari'
 #http control
 gem 'addressable'
+#rakuten
+# rakuten API - rails UI
+gem 'rakuten_web_service'

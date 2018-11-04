@@ -17,13 +17,12 @@
 					<li><a href="#">新着</a></li>
 					<li><a href="#">メニューＣ</a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
+				<%= form_tag(new_book_path, method: :get, class: "navbar-form navbar-left") do %>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="検索キーワード">
+						<%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "キーワードを入力", size: 40 %>
 					</div>
-					<button type="submit" class="btn btn-default">検索</button>
-				</form>
-				
+					<%= submit_tag '書籍を検索', class: 'btn btn-success' %>
+				<% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li class="dropdown">

@@ -57,7 +57,7 @@ class User < ApplicationRecord
     uid = auth[:uid]
     auth_name = auth[:info][:name]
     auth_nickname = auth[:info][:name]
-    image_url = auth[:info][:image]
+    image_url = auth[:info][:image].gsub('_normal', '')
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.auth_name = auth_name
       user.auth_nickname = auth_nickname

@@ -4,12 +4,13 @@ class Book < ApplicationRecord
   has_many :reviews
   has_many :has_users, through: :reviews, source: :user
   
-  def search_books(keyword)
+  #google books apiで使用 使いにくいので一旦保留
+  def search_google_books(keyword)
     books = []
-    if keyword.present?
-      json_books = get_json(keyword)
+    json_books = get_json(keyword)
+    if json_books.present?
       json_books["items"].each do |json_book|
-        book = Book.new(read(json_book))
+        book = Book.find_or_initialize_by(read(json_book))
         books << book
       end
     end
@@ -17,7 +18,7 @@ class Book < ApplicationRecord
   end
 
   def get_json(keyword)
-    uri = Addressable::URI.parse("https://www.googleapis.com/books/v1/volumes?q=#{keyword}")
+    uri = Addressable::URI.parse("https://www.googleapis.com/books/v1/volumes?q=#{keyword}&maxResults=40&orderBy=relevance")
     response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
       http.open_timeout = 5
       http.read_timeout = 10
@@ -39,16 +40,16 @@ class Book < ApplicationRecord
   private
   
   def read(json_book)
-    uid = json_book["id"]
-    title = json_book["volumeInfo"]["title"]
-    subtitle = json_book["volumeInfo"]["subtitle"]
-    authors = json_book["volumeInfo"]["authors"].join(' ')
-    publisher = json_book["volumeInfo"]["publisher"]
-    published_date = json_book["volumeInfo"]["published_date"]
-    description = json_book["volumeInfo"]["description"]
-    image_url = json_book["volumeInfo"]["imageLinks"]["thumbnail"]
-    isbn_10 = json_book["volumeInfo"]["industryIdentifiers"].find { |item| item["type"] == "ISBN_10"} &.fetch("identifier")
-    isbn_13 = json_book["volumeInfo"]["industryIdentifiers"].find { |item| item["type"] == "ISBN_13"} &.fetch("identifier")
+    uid = json_book.dig("id")
+    title = json_book.dig("volumeInfo", "title")
+    subtitle = json_book.dig("volumeInfo","subtitle")
+    authors = json_book.dig("volumeInfo","authors")&.join(' ')
+    publisher = json_book.dig("volumeInfo","publisher")
+    published_date = json_book.dig("volumeInfo","published_date")
+    description = json_book.dig("volumeInfo","description")
+    image_url = json_book.dig("volumeInfo","imageLinks","thumbnail") || "/images/no_image.png"
+    isbn_10 = json_book.dig("volumeInfo","industryIdentifiers")&.find { |item| item["type"] == "ISBN_10"} &.fetch("identifier")
+    isbn_13 = json_book.dig("volumeInfo","industryIdentifiers")&.find { |item| item["type"] == "ISBN_13"} &.fetch("identifier")
     {
       uid: uid,
       title: title,
