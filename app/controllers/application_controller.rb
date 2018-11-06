@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :authenticate
+  helper_method :current_user, :logged_in?, :authenticate,
 
   private
-
+  
   def current_user
     return unless session[:user_id]
     @current_user ||= User.find_by(uid: session[:user_id])

@@ -3,6 +3,12 @@ class User < ApplicationRecord
   #user - book
   has_many :reviews
   has_many :has_books, through: :reviews, source: :book
+    #レビュー
+  has_many :shelf_relations, -> { where(favorite: false) }, class_name: 'Review', foreign_key: 'user_id'
+  has_many :shelf_books, through: :shelf_relations, source: :book
+    #私の三冊
+  has_many :favorite_relations, -> { where(favorite: true) }, class_name: 'Review', foreign_key: 'user_id'
+  has_many :favorite_books, through: :favorite_relations, source: :book
   
   #user - user #block未実装
   has_many :user_relations
@@ -15,6 +21,38 @@ class User < ApplicationRecord
   
   has_many :follower_relations, -> { where(follow: true) }, class_name: 'UserRelation', foreign_key: 'to_user_id'
   has_many :followers, through: :follower_relations, source: :user
+  
+  #shelf
+  def shelf(book)
+    self.shelf_relations.find_or_create_by(book_id: book.id)
+  end
+
+  def unshelf(book)
+    shelf = self.shelf_relations.find_by(book_id: book.id)
+    shelf.destroy if shelf
+  end
+
+  def shelf?(book)
+    self.shelf_books.include?(book)
+  end
+  
+  #favorite
+  def favorite(book)
+    self.favorite_relations.find_or_create_by(book_id: book.id)
+  end
+
+  def unfavorite(book)
+    favorite = self.favorite_relations.find_by(book_id: book.id)
+    favorite.destroy if favorite
+  end
+
+  def favorite?(book)
+    self.favorite_books.include?(book)
+  end
+  
+  def favoritedesided?
+    self.favorite_books.count == 3
+  end  
   
   #following
   def follow(other_user)

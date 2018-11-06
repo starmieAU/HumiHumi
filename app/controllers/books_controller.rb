@@ -34,9 +34,16 @@ class BooksController < ApplicationController
       @book = Book.new(read(results.first))
       @book.save
     end
-    redirect_to @book
+    redirect_back
   end
+  
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_or_initialize_by(isbn_13: params[:id])
+
+    unless @book.persisted?
+      results = RakutenWebService::Books::Book.search(isbn: params[:id])
+
+      @book = Book.new(read(results.first))
+    end
   end
 end

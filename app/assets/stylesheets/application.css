@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.btn {
+white-space: normal;
+}
+
 /* body */
 body {
   background: #f2f2f2;
@@ -23,47 +27,54 @@ footer {
 }
 
 /* book */
-.book{
-  background-color: #ffffff;
-  border: 1px solid #555;
-  margin: 5px;
+.books-item{
+  background-color: #faffff;
+  border: 1px solid #ddd;
+  min-height:80px;
+  margin-bottom:5px;
 }
-.book .row .book-image {
-  border-right: 1px solid #555;
-  background-color: #aaa;
+.books-image-box{
+  background-color: #555;
 }
-.book .row .book-image img {
-  height: 150px;
+.books-image{
+  max-width: 100%;
+  max-height: 150px;
 }
-.book-info p{
-  margin:0px;
-}
-p.book-title {
+p.books-title {
   /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  margin-top:10px;
-  height: 60px;
+  padding-top:10px;
+  min-height: 80px;
 }
-p.book-authors {
-  height: 40px;
+p.books-authors {
+
 }
 
 /*book show 画面*/
 
 
 .book-show-body{
-  background-color: #ffffff;
-  border: 1px solid #555;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 .book-common-image img{
   max-height: 300px;
 }
+.book-show-title-md{
+  min-height:100px;
+}
+.m-tb5{
+  margin-top:5px;
+  margin-bottom:5px;
+}
 
-
-
+.review-form-body{
+  background-color: #ffffff;
+  border: 1px solid #555;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 /* users */

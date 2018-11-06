@@ -1,42 +1,47 @@
 <div class="raw">
   <div class="col-md-10 col-md-offset-1 col-xs-12">
-    <div class="row book-show-body">
-      <div class="col-xs-4">
-        <div class="left-view row">
-          <div class="book-common-image col-xs-12">
-            <img class='img-responsive center-block' src="<%= book.image_url %>" alt="" >
+    <div class="panel panel-default">
+    	<div class="panel-body">
+        <div class="row book-show-body">
+          <div class="col-xs-4">
+            <div class="left-view row">
+              <div class="book-common-image col-xs-12">
+                <img class='img-responsive center-block' src="<%= book.image_url %>" alt="" >
+              </div>
+              <div class="m-tb5 col-xs-12">
+                <%= render 'reviews/shelf_button', book: @book %>
+              </div>
+              <div class="m-tb5 col-xs-12">
+                <%= render 'reviews/favorite_button', book: @book %>
+              </div>
+            </div>
           </div>
-          <div class="book-reriew-botton col-xs-12">
-            <%#= form_tag(books_path method:get) do %>
-              <%#= hidden_field_tag :book_id, book.id %>
-              <%#= submit_tag '書評を書く', class: 'btn btn-default center-block' %>
-            <%# end %>
-            <button type="button" class="btn btn-primary btn-group-justified">書評を書く</button>
+          <div class="col-xs-8 book-info">
+            <div class="row">
+              <div class="col-xs-12 book-show-title-md hidden-xs">
+                <h3><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></h3>
+              </div>
+              <div class="col-xs-12 book-show-title-xs visible-xs">
+                <h4><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></h3>
+              </div>
+              <div class="col-xs-12 book-info">
+                <p><%= "著者：#{book.authors}"%></p>
+              </div>
+              <div class="col-xs-12 book-info">
+                <p><%= "出版社：#{book.publisher}"%></p>
+              </div>
+              <div class="col-xs-12 book-info">
+                <p><%= "発売日：#{book.published_date}"%></p>
+              </div>
+              <div class="col-xs-12 book-info">
+                <p><%= "ISBN13：#{book.isbn_13}"%></p>
+              </div>
+              <div class="col-xs-12 book-info">
+                <p class="book-show-point"><%= "評価："%></p>
+              </div>
+            </div>
           </div>
-          <div class="book-favorite-botton col-xs-12">
-            <%#= form_tag(books_path) do %>
-              <%#= hidden_field_tag :book_id, book.id %>
-              <%#= submit_tag '「私の三冊」に加える', class: 'btn btn-default center-block' %>
-            <%# end %>
-            <button type="button" class="btn btn-primary btn-group-justified">「私の三冊」に加える</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-8 book-info">
-        <div class="row">
-          <div class="col-xs-12 book-info">
-            <h3 class="book-show-title"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></h3>
-          </div>
-          <div class="col-xs-12 book-info">
-            <p class="book-show-auhor"><%= "著者：#{book.authors}"%></p>
-          </div>
-          <div class="col-xs-12 book-info">
-            <p class="book-show-etc"><%= "その他：#{book.publisher} / #{book.published_date} / #{book.isbn_13}"%></p>
-          </div>
-          <div class="col-xs-12 book-info">
-            <p class="book-show-point"><%= "評価："%></p>
-          </div>
-          <div class="col-xs-12 book-info">
+          <div class="col-md-8 col-xs-12 book-info">
             <p class="book-show-p"><%= "あらすじ："%></p>
             <p class="book-show-description"><%= book.description%></p>
           </div>
@@ -45,3 +50,4 @@
     </div>
   </div>
 </div>
+    

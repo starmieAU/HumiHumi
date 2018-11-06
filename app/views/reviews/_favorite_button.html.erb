@@ -1,0 +1,19 @@
+<% if logged_in?%>
+  <% if current_user.favorite?(book) %>
+    <%= form_tag(review_path(book.id), method: :delete) do %>
+      <%= hidden_field_tag :book_id, book.id %>
+      <%= hidden_field_tag :relation, 'favorite' %>
+      <%= button_tag type: 'submit', class: 'btn btn-sm btn-info btn-group-justified' do %>
+        私の三冊<span class="glyphicon glyphicon-minus-sign"></span>
+      <% end %>
+    <% end %>
+  <% elsif !current_user.favoritedesided?  %>
+    <%= form_tag(reviews_path) do %>
+      <%= hidden_field_tag :isbn_13, book.isbn_13 %>
+      <%= hidden_field_tag :relation, 'favorite' %>
+      <%= button_tag type: 'submit', class: 'btn btn-sm btn-primary btn-group-justified' do %>
+        私の三冊<span class="glyphicon glyphicon-plus-sign"></span>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>  

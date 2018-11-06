@@ -1,28 +1,40 @@
-<div class="row">
-  <% if books.present? %>
+
+<% if books.present? %>
+  <div class="row">
     <div class="col-xs-12">
       <h3>検索結果</h3>
     </div>
-    <% books.each do |book| %>
-      <div class="book col-xs-12">
+  </div>
+  <div class="panel panel-default">
+  	<div class="panel-body">
+      <% books.each do |book| %>
         <div class="row">
-          <div class="col-xs-4 book-image">
-            
-            <%= form_tag(books_path) do %>
-              <%= hidden_field_tag :isbn_13, book.isbn_13 %>
-              <%= image_submit_tag book.image_url, class: 'img-responsive center-block' %>
-            <% end %>
-            
-          </div>
-          <div class="col-xs-8 book-info">
-            <p class="book-title lead"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
-            <p class="book-authors"><%= book.authors%></p>
+          <div class="col-xs-12">
+            <div class="row books-item">
+              <div class="col-xs-4 books-image-box">
+                <%= link_to book_path(id: book.isbn_13) do %>
+                  <%= image_tag book.image_url, class: 'books-image center-block' %>
+                <% end %>
+              </div>
+              <div class="col-xs-8 books-info">
+                <%= link_to book_path(id: book.isbn_13) do %>
+                  <p class="books-title lead"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
+                <% end %>
+                <p class="books-authors"><%= book.authors%></p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-    <%= paginate @books %>
-  <% else %>
+      <% end %>
+  	</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= paginate @books %>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
     <div class="col-xs-12">
       <h3>検索結果は０件です。</h3>
       <p>申し訳ありません、入力に間違いがないか確認してください。</p>
@@ -30,5 +42,5 @@
       <p>通常検索では「書籍タイトル」または「著者名」で検索しています。</p>
       <p>詳細検索では「書籍タイトル」、「著者名」、「ISBN13」を組み合わせた検索が可能です。</p>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
