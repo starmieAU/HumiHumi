@@ -3,7 +3,7 @@
     <%= form_tag(review_path(book.id), method: :delete) do %>
       <%= hidden_field_tag :book_id, book.id %>
       <%= hidden_field_tag :relation, 'favorite' %>
-      <%= button_tag type: 'submit', class: 'btn btn-sm btn-info btn-group-justified' do %>
+      <%= button_tag type: 'submit', class: 'btn btn-sm btn-danger btn-group-justified' do %>
         私の三冊<span class="glyphicon glyphicon-minus-sign"></span>
       <% end %>
     <% end %>
