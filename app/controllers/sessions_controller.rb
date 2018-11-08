@@ -12,4 +12,8 @@ class SessionsController < ApplicationController
       flash[:success] = "ログアウトしました。"
       redirect_to root_path
   end
+  
+  def failure
+    redirect_to root_url, alert: "Authentication failed."
+  end
 end

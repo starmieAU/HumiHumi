@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy'
   resources :books, only: [:show, :new]
   resources :reviews, only: [:show, :edit, :destroy, :create, :index]
-
+  get "/auth/failure" ,to: "sessions#failure"
 end
