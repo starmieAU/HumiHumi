@@ -26,7 +26,10 @@ footer {
   margin-top: 5px;
   height: 40px;
 }
-
+text.nav-logo{
+  font-size: 28px;
+  margin:0px;
+}
 /* search */
 .search {
   margin-bottom: 20px;
