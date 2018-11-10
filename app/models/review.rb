@@ -7,12 +7,12 @@ class Review < ApplicationRecord
  
   def add_error_sample
     # nameが空のときにエラーメッセージを追加する
-    if u_article.length > 10
+    if (u_article.present? && u_article.length > 10)
       errors[:base] << "オリジナル基準:10文字を超えています"
     end
  
     # 価格が空のときにエラーメッセージを追加する
-    if review_10_char.length > 10
+    if (review_10_char.present? && review_10_char.length > 10)
       errors[:base] << "10文字評価:10文字を超えています"
     end
   end
