@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181110082150) do
+ActiveRecord::Schema.define(version: 20181110173315) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20181110082150) do
     t.text     "user_memo",      limit: 65535
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.boolean  "micropost_f",                  default: false
     t.index ["book_id"], name: "index_reviews_on_book_id", using: :btree
     t.index ["user_id", "book_id", "favorite"], name: "index_reviews_on_user_id_and_book_id_and_favorite", unique: true, using: :btree
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree

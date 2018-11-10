@@ -1,2 +1,43 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="panel panel-default panel-user">
+	<div class="panel-body panel-user-body">
+    <div class="row">
+      <div class="col-md-4 col-xs-12">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-4 col-xs-4 col-xs-offset-4">
+            <%= link_to user_path(@user) do %>
+              <%= image_tag @user.image_url, class: 'books-image center-block img-circle' %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p class="text-center"><%= link_to @user.prof_name,user_path(@user) %>さん</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-xs-12">
+        <div class="panel panel-default panel-myfovo">
+        	<div class="panel-heading panel-favo-heading">
+        	  私の三冊
+          </div>
+        	<div class="panel-body panel-myfavo-body">
+            <% @user.favorite_books.each do |favo_book| %>
+              <%= link_to book_path(favo_book.isbn_13)  do %>
+                <p class="favo-book"><%= favo_book.title %><%= " (#{favo_book.subtitle})" if favo_book.subtitle.present? %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <% @shelves.each do |shelf| %>
+      <%= render 'reviews/review_chip', review: shelf %>
+    <% end %>
+    <%= paginate @shelves %>
+  </div>
+</div>
+

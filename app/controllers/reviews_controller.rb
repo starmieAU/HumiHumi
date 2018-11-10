@@ -79,7 +79,8 @@ class ReviewsController < ApplicationController
       :review_10_char,
       :review_text,
       :review_caution,
-      :user_memo
+      :user_memo,
+      :micropost_f
     )
   end
 end

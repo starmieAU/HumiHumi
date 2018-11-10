@@ -124,12 +124,12 @@
                   </div>
                   <%= f.hidden_field :book_id, :value => @review.book_id %>
                   <%= f.hidden_field :user_id, :value => current_user.id %>
-                  <%= f.hidden_field :favorite, :value => false %>     
+                  <%= f.hidden_field :favorite, :value => false %>   
+                  <%= f.hidden_field :micropost_f, :value => ( :review_10_char != "" && :review_text != "") %>   
                   <div class="form-group">
                     <%= f.label :user_memo, '自分用メモ(公開されません)' %>
                     <%= f.text_area :user_memo, size: "20x4", class: 'form-control', placeholder: "例)〇〇さんから勧められた。テレビで面白いと評判だった。" %>
                   </div>
-            
                   <%= f.submit 'レビュー登録', class: 'btn btn-primary btn-block' %>
                 <% end %>
               </div>

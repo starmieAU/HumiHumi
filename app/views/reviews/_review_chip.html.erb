@@ -27,12 +27,14 @@
           <p><%= review.book.authors %></p>
         </div>        
         <div class="col-md-9 col-xs-12">
-          10文字レビュー
-          <div class="panel panel-default">
-          	<div class="panel-body panel-body-pa5 text-center">
-              <p class="review-10-str"><%= review.review_10_char %></p>
-          	</div>
-          </div>
+          <% if review.review_10_char.present? %>
+            10文字レビュー
+            <div class="panel panel-default">
+            	<div class="panel-body panel-body-pa5 text-center">
+                <p class="review-10-str"><%= review.review_10_char %></p>
+            	</div>
+            </div>
+          <% end %>
         </div>
         <div class="col-md-3 col-md-offset-3 col-xs-12">
           <% unless review.point == 0 %>
