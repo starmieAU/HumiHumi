@@ -59,15 +59,38 @@
           <% end %> 
           <div class="panel-body panel-review-body">
             <div class="row">
-              <div class="col-md-12 col-xs-6">
+              <div class="col-md-4 col-md-offset-1 col-xs-11 text-right">
                 <div class="row">
                   <div class="col-xs-12">
-                    評価：
-                    <% @review.point.times do %>
+                    <% unless @review.point == 0 %>
+                      評価：
+                      <% @review.point.times do %>
                       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                      <% end %>
+                      <% (5-@review.point).times do %>
+                      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-12">
+                    <% if @review.u_article.present? %>
+                      <%= @review.u_article %>：
+                      <% @review.u_point.times do %>
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                      <% end %>
+                      <% (5-@review.u_point).times do %>
+                      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-2 col-xs-12">
+                <% unless @review.read_non? %>
+                  読書状況：<%= @review.read_status_i18n %>
+                <% end %>
               </div>
             </div>
           </div>

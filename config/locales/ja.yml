@@ -1,0 +1,9 @@
+ja:
+  enums:
+    review:
+      read_status:
+        non: 未設定
+        ing: 途中
+        done: 読んだ
+        ed: 昔読んだ
+        will: 積んでる

@@ -67,3 +67,5 @@ gem 'addressable'
 #rakuten
 # rakuten API - rails UI
 gem 'rakuten_web_service'
+#enum japanese
+gem 'enum_help'
