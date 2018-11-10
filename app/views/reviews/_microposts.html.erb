@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1 col-xs-12">
+	  <% microposts.each do |micropost| %>
+      <div class="panel panel-default">
+      	<div class="panel-body panel-user-body">
+          <div class="row">
+            <div class="col-md-6 col-xs-12">
+              <div class="row">
+                <div class="col-xs-3">
+                  <%= link_to user_path(micropost.user) do %>
+                    <%= image_tag micropost.user.image_url, class: 'books-image center-block img-circle' %>
+                  <% end %>
+                </div>
+                <div class="col-xs-9">
+                  <div class="panel panel-default panel-myfovo">
+                  	<div class="panel-body panel-myfavo-body">
+                      <% micropost.user.favorite_books.each do |favo_book| %>
+                        <%= link_to book_path(favo_book.isbn_13)  do %>
+                          <p class="favo-book"><%= favo_book.title %><%= " (#{favo_book.subtitle})" if favo_book.subtitle.present? %></p>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <div class="col-xs-12">
+                <%= link_to micropost.user.prof_name,user_path(micropost.user) %>さんが</br>
+                レビューをしました。
+              </div>
+            </div>
+          </div>
+          <%= render 'reviews/review_chip', review: micropost %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate microposts %>
+  </div>
+</div>

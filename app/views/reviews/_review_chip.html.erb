@@ -1,0 +1,75 @@
+<% if review.emotion_like? %>
+  <div class="panel panel-success">
+  	<div class="panel-heading">
+  	  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>オススメ！
+    </div>
+<% end %>
+<% if review.emotion_non? %>
+  <div class="panel panel-default">
+<% end %>
+<% if review.emotion_hate? %>
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>やめとけ！
+    </div>
+<% end %> 
+  	<div class="panel-body panel-body-pa5">
+      <div class="row">
+        <div class="col-xs-3">
+          <%= link_to book_path(id: review.book.isbn_13) do %>
+            <%= image_tag review.book.image_url, class: 'books-image center-block' %>
+          <% end %>
+        </div>
+        <div class="col-xs-9">
+          <%= link_to book_path(id: review.book.isbn_13) do %>
+            <p class="size-18"><%= review.book.title%><%= " (#{review.book.subtitle})" if review.book.subtitle.present? %></p>
+          <% end %>
+          <p><%= review.book.authors %></p>
+        </div>        
+        <div class="col-md-9 col-xs-12">
+          10文字レビュー
+          <div class="panel panel-default">
+          	<div class="panel-body panel-body-pa5 text-center">
+              <p class="review-10-str"><%= review.review_10_char %></p>
+          	</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-md-offset-3 col-xs-12">
+          <% unless review.point == 0 %>
+            評価：
+            <% review.point.times do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+            <% (5-review.point).times do %>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <% unless (review.u_article.blank? || review.u_point == 0) %>
+            <%= review.u_article %>：
+            <% review.u_point.times do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+            <% (5-review.u_point).times do %>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-xs-12">
+          <% if review.review_text.present? %>
+            書評あり <%if review.review_caution %> <span class="label label-danger">ネタバレ</span><% end %>
+            <div class="panel panel-default">
+            	<div class="panel-body panel-body-pa5 review-text <%= "review-coution" if review.review_caution %>">
+                <p class=""><%= simple_format review.review_text[0..60] + (review.review_text.length > 60 ? "..." : "") %></p>
+            	</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-xs-12 text-right">
+          <%= link_to 'レビュー詳細', review_path(review) %>
+        </div>
+      </div>
+    </div>
+  </div>
+

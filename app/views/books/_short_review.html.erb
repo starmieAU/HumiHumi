@@ -1,0 +1,82 @@
+<p></p>
+<% short_reviews.each do |review| %>
+  <% if review.emotion_like? %>
+    <div class="panel panel-success">
+    	<div class="panel-heading">
+    	  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>オススメ！
+      </div>
+  <% end %>
+  <% if review.emotion_non? %>
+    <div class="panel panel-default">
+  <% end %>
+  <% if review.emotion_hate? %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>やめとけ！
+      </div>
+  <% end %> 
+    	<div class="panel-body panel-user-body">
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="row">
+              <div class="col-xs-12">
+                <%= link_to review.user.prof_name,user_path(review.user) %>さん
+              </div>
+              <div class="col-xs-3">
+                <%= link_to user_path(review.user) do %>
+                  <%= image_tag review.user.image_url, class: 'books-image center-block img-circle' %>
+                <% end %>
+              </div>
+              <div class="col-xs-9">
+                <div class="panel panel-default panel-myfovo">
+                	<div class="panel-body panel-myfavo-body">
+                    <% review.user.favorite_books.each do |favo_book| %>
+                      <%= link_to book_path(favo_book.isbn_13)  do %>
+                        <p class="favo-book"><%= favo_book.title %><%= " (#{favo_book.subtitle})" if favo_book.subtitle.present? %></p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="row">
+              <div class="col-xs-12">
+                <% unless review.point == 0 %>
+                  評価：
+                  <% review.point.times do %>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <% end %>
+                  <% (5-review.point).times do %>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="col-xs-12">
+                <% unless (review.u_article.blank? || review.u_point == 0) %>
+                  <%= review.u_article %>：
+                  <% review.u_point.times do %>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <% end %>
+                  <% (5-review.u_point).times do %>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="col-xs-12">
+                <div class="panel panel-default">
+                	<div class="panel-body panel-body-pa5 text-center">
+                    <p class="review-10-str"><%= review.review_10_char %></p>
+                	</div>
+                </div>
+              </div>
+              <div class="col-xs-12 text-right">
+                <%= link_to 'レビュー詳細', review_path(review) %>
+              </div>
+            </div>
+          </div>       
+        </div>
+      </div>
+    </div>
+<% end %>

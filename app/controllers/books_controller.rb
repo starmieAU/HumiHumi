@@ -39,6 +39,9 @@ class BooksController < ApplicationController
   
   def show
     @book = Book.find_or_initialize_by(isbn_13: params[:id])
+    @tab = params[:tab] || ""
+    @short_reviews = @book.short_reviews.page(params[:page]).per(10)
+    @long_reviews = @book.long_reviews.page(params[:page]).per(10)
 
     unless @book.persisted?
       results = RakutenWebService::Books::Book.search(isbn: params[:id])

@@ -3,7 +3,13 @@
 .btn {
   white-space: normal;
 }
+.panel-body-pa5{
+  padding: 5px;
+}
 
+.size-18{
+  font-size: 18px
+}
 /* body */
 body {
   background: #f2f2f2;
@@ -89,6 +95,9 @@ p.books-authors {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.review-coution{
+  color: #eee;
+}
 /* users */
 .panel-user{
   
@@ -101,4 +110,11 @@ p.favo-book {
 }
 .panel-favo-heading{
   padding: 0 10px;
+}
+p.review-10-str {
+  font-size:26px;
+  margin: 0;
+}
+.review-text p{
+  font-size:12px;
 }

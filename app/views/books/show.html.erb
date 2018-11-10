@@ -1,2 +1,3 @@
-<%= link_to '< 戻る', :back %> 
+
 <%= render 'book_common', book: @book %>
+<%= render 'book_reviews', {book: @book,tab: @tab, short_reviews: @short_reviews,long_reviews: @long_reviews} %>

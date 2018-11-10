@@ -4,6 +4,11 @@ class Book < ApplicationRecord
   has_many :reviews
   has_many :has_users, through: :reviews, source: :user
   
+  #10-str-review
+  has_many :short_reviews, -> { where.not(review_10_char: "") }, class_name: 'Review', foreign_key: 'book_id'
+  #text-review
+  has_many :long_reviews, -> { where.not(review_text: "") }, class_name: 'Review', foreign_key: 'book_id'
+
   #google books apiで使用 使いにくいので一旦保留
   def search_google_books(keyword)
     books = []

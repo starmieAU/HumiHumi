@@ -42,24 +42,24 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-          <% if @review.emotion_like? %>
-            <div class="panel panel-success">
-            	<div class="panel-heading">
-            	  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>オススメ！
-              </div>
-          <% end %>
-          <% if @review.emotion_non? %>
-            <div class="panel panel-default">
-          <% end %>
-          <% if @review.emotion_hate? %>
-            <div class="panel panel-danger">
-              <div class="panel-heading">
-                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>やめとけ！
-              </div>
-          <% end %> 
+      <% if @review.emotion_like? %>
+        <div class="panel panel-success">
+        	<div class="panel-heading">
+        	  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>オススメ！
+          </div>
+      <% end %>
+      <% if @review.emotion_non? %>
+        <div class="panel panel-default">
+      <% end %>
+      <% if @review.emotion_hate? %>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>やめとけ！
+          </div>
+      <% end %> 
           <div class="panel-body panel-review-body">
-            <div class="row">
-              <div class="col-md-4 col-md-offset-1 col-xs-11 text-right">
+            <div class="row text-right">
+              <div class="col-md-4 col-md-offset-1 col-xs-11">
                 <div class="row">
                   <div class="col-xs-12">
                     <% unless @review.point == 0 %>
@@ -73,7 +73,7 @@
                     <% end %>
                   </div>
                   <div class="col-xs-12">
-                    <% if @review.u_article.present? %>
+                    <% unless (@review.u_article.blank? || @review.u_point == 0) %>
                       <%= @review.u_article %>：
                       <% @review.u_point.times do %>
                       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -85,11 +85,46 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4 col-md-offset-2 col-xs-12">
+              <div class="col-md-4 col-xs-offset-1 col-xs-10">
                 <% unless @review.read_non? %>
                   読書状況：<%= @review.read_status_i18n %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <p></p>
+              <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <% if @review.review_10_char.present? %>
+                      10文字レビュー：
+                  <div class="panel panel-default">
+                  	<div class="panel-body panel-body-pa5 text-center">
+                      <p class="review-10-str"><%= @review.review_10_char %></p>
+                  	</div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <% if @review.review_text.present? %>
+                  書評 <%if @review.review_caution %> <span class="label label-danger">ネタバレ</span><% end %>
+                  <div class="panel panel-default">
+                  	<div class="panel-body panel-body-pa5 review-text">
+                      <p class=""><%= simple_format @review.review_text %></p>
+                  	</div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <% if @review.user_memo.present? %>
+                  自分用メモ
+                  <div class="panel panel-default">
+                  	<div class="panel-body panel-body-pa5 review-text">
+                      <p class=""><%= simple_format @review.user_memo %></p>
+                  	</div>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -97,6 +132,15 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-4">
+    <%= render 'edit_review_button', {book: @review.book,text: "再レビュー"} %>
+    <p></p>
+  </div>
+  <div class="col-xs-4 col-xs-offset-4">
+    <button class="btn btn-sm btn-default btn-group-justified">ツイート</button>
   </div>
 </div>
 

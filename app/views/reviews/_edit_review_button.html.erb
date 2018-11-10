@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <% if current_user.shelf?(book) %>
     <%= link_to edit_review_path(current_user.get_shelf(book)), class: 'btn btn-sm btn-success btn-group-justified' do %>
-      レビュー<span class="glyphicon glyphicon-pencil"></span>
+      <%= text %><span class="glyphicon glyphicon-pencil"></span>
     <% end %>
   <% end %>
 <% end %>  

@@ -12,7 +12,7 @@
                 <%= render 'reviews/shelf_button', book: @book %>
               </div>
               <div class="m-tb5 col-xs-12">
-                <%= render 'reviews/edit_review_button', book: @book %>
+                <%= render 'reviews/edit_review_button', {book: @book,text: "レビュー"} %>
               </div>
               <div class="m-tb5 col-xs-12">
                 <%= render 'reviews/favorite_button', book: @book %>
