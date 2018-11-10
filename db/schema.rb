@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105150142) do
+ActiveRecord::Schema.define(version: 20181110082150) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
@@ -31,14 +31,14 @@ ActiveRecord::Schema.define(version: 20181105150142) do
     t.integer  "user_id"
     t.integer  "book_id"
     t.boolean  "favorite",                     default: false, null: false
-    t.integer  "read_status"
-    t.integer  "emotion"
+    t.integer  "read_status",    limit: 1,     default: 0,     null: false
+    t.integer  "emotion",        limit: 1,     default: 2,     null: false
     t.integer  "point"
-    t.string   "u_article"
+    t.string   "u_article",                    default: ""
     t.integer  "u_point"
-    t.string   "review_10_char"
+    t.string   "review_10_char",               default: ""
     t.text     "review_text",    limit: 65535
-    t.boolean  "review_caution"
+    t.boolean  "review_caution",               default: false
     t.text     "user_memo",      limit: 65535
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false

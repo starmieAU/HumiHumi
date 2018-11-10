@@ -5,29 +5,9 @@
       <h3>検索結果</h3>
     </div>
   </div>
-  <div class="panel panel-default">
-  	<div class="panel-body">
-      <% books.each do |book| %>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="row books-item">
-              <div class="col-xs-4 books-image-box">
-                <%= link_to book_path(id: book.isbn_13) do %>
-                  <%= image_tag book.image_url, class: 'books-image center-block' %>
-                <% end %>
-              </div>
-              <div class="col-xs-8 books-info">
-                <%= link_to book_path(id: book.isbn_13) do %>
-                  <p class="books-title lead"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
-                <% end %>
-                <p class="books-authors"><%= book.authors%></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-  	</div>
-  </div>
+  <% books.each do |book| %>
+    <%= render 'list_book', book: book %>
+  <% end %>
   <div class="row">
     <div class="col-xs-12">
       <%= paginate @books %>

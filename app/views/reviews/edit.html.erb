@@ -1,2 +1,142 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<div class="row">
+  <div class = "col-md-10 col-md-offset-1 col-xs-12">
+    <div class="panel panel-default">
+    	<div class="panel-body">
+        <%= render 'books/list_book',book: @review.book %>
+      </div>
+    </div>    
+    <h3>レビュー</h3>
+    <div class="panel panel-default">
+    	<div class="panel-body">
+        <div class="row">
+          <div class = "col-xs-12">
+            <div class="row review-form">
+              <div class="col-md-10 col-md-offset-1 col-sx-12">
+                <%= form_for(@review) do |f| %>
+                  <%= render 'layouts/error_messages', model: f.object %>
+                  <div class="form-group">
+                    <%= f.label :read_status, '読書状況' %>
+                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                      <label class="btn btn-default btn-xs <%= "active" if @review.read_non? %>">
+                        <%= f.radio_button :read_status, :non %>未設定
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.read_ing? %>">
+                        <%= f.radio_button :read_status, :ing %>途中
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.read_done? %>">
+                        <%= f.radio_button :read_status, :done %>読んだ！
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.read_ed? %>">
+                        <%= f.radio_button :read_status, :ed %>昔読んだ
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.read_will? %>">
+                        <%= f.radio_button :read_status, :will %>積んでる
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.label :emotion, '絶対に〇〇！' %>
+                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                      <label class="btn btn-default btn-xs <%= "active" if @review.emotion_like? %>">
+                        <%= f.radio_button :emotion, :like %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>オススメ！
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.emotion_non? %>">
+                        <%= f.radio_button :emotion, :non %>どちらでもない
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.emotion_hate? %>">
+                        <%= f.radio_button :emotion, :hate %><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>やめとけ！
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.label :point, '評価' %>
+                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == nil %>">
+                        <%= f.radio_button :point, nil %>未設定
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == 1 %>">
+                        <%= f.radio_button :point, 1 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>1
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == 2 %>">
+                        <%= f.radio_button :point, 2 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>2
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == 3 %>">
+                        <%= f.radio_button :point, 3 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>3
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == 4 %>">
+                        <%= f.radio_button :point, 4 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>4
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == 5 %>">
+                        <%= f.radio_button :point, 5 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>5
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.label :u_article, 'オリジナル基準' %>
+                    <%= f.text_field :u_article, class: 'form-control', placeholder: "例)ワクワク感・ラストの衝撃度など(10文字以内)" %>
+                  </div>
+                  
+                  <div class="form-group">
+                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == nil %>">
+                        <%= f.radio_button :u_point, nil %>未設定
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 1 %>">
+                        <%= f.radio_button :u_point, 1 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>1
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 2 %>">
+                        <%= f.radio_button :u_point, 2 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>2
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 3 %>">
+                        <%= f.radio_button :u_point, 3 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>3
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 4 %>">
+                        <%= f.radio_button :u_point, 4 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>4
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 5 %>">
+                        <%= f.radio_button :u_point, 5 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>5
+                      </label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <%= f.label :review_10_char, '10文字レビュー' %>
+                    <%= f.text_field :review_10_char, class: 'form-control', placeholder: "10文字以内でレビューを書いてください。" %>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.label :review_text, '書評' %>
+                    <%= f.text_area :review_text, size: "20x5", class: 'form-control',placeholder: "例)作者らしさが出ていてすごく面白かった。〇〇の台詞は色々と考えさせられた。" %>
+                  </div>
+                  <div class="form-group">
+                    ネタバレですか？
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default btn-xs <%= "active" if @review.review_caution == false %>">
+                        <%= f.radio_button :review_caution, false %>いいえ
+                      </label>
+                      <label class="btn btn-default btn-xs <%= "active" if @review.review_caution == true %>">
+                        <%= f.radio_button :review_caution, true %>はい
+                      </label>
+                    </div>
+                  </div>
+                  <%= f.hidden_field :book_id, :value => @review.book_id %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.hidden_field :favorite, :value => false %>     
+                  <div class="form-group">
+                    <%= f.label :user_memo, '自分用メモ(公開されません)' %>
+                    <%= f.text_area :user_memo, size: "20x4", class: 'form-control', placeholder: "例)〇〇さんから勧められた。テレビで面白いと評判だった。" %>
+                  </div>
+            
+                  <%= f.submit 'レビュー登録', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

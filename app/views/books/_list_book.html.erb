@@ -1,0 +1,17 @@
+<div class="panel panel-default panel-book">
+	<div class="panel-body panel-book-body">
+    <div class="row books-item">
+      <div class="col-xs-4 books-image-box">
+        <%= link_to book_path(id: book.isbn_13) do %>
+          <%= image_tag book.image_url, class: 'books-image center-block' %>
+        <% end %>
+      </div>
+      <div class="col-xs-8 books-info">
+        <%= link_to book_path(id: book.isbn_13) do %>
+          <p class="books-title lead"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
+        <% end %>
+        <p class="books-authors"><%= book.authors%></p>
+      </div>
+    </div>
+  </div>
+</div>

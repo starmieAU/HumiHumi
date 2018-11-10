@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
   end
   
   def failure
-    redirect_to root_url, alert: "Authentication failed."
+    flash[:danger] = "ログインに失敗しました。"
+    redirect_to root_url
   end
 end

@@ -1,2 +1,84 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="row">
+  <div class="col-xs-12">
+    <h3><%= @review.user.prof_name%>さんのレビュー</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sx-12">
+    <%= render 'books/list_book', book: @review.book %>
+    <div class="panel panel-default panel-user">
+    	<div class="panel-body panel-user-body">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <div class="row">
+              <div class="col-md-5 col-md-offset-4 col-xs-4 col-xs-offset-4">
+                <%= link_to user_path(@review.user) do %>
+                  <%= image_tag @review.user.image_url, class: 'books-image center-block img-circle' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <p class="text-center"><%= link_to @review.user.prof_name,user_path(@review.user) %>さん</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 col-xs-12">
+            <div class="panel panel-default panel-myfovo">
+            	<div class="panel-heading panel-favo-heading">
+            	  私の三冊
+              </div>
+            	<div class="panel-body panel-myfavo-body">
+                <% @review.user.favorite_books.each do |favo_book| %>
+                  <%= link_to book_path(favo_book.isbn_13)  do %>
+                    <p class="favo-book"><%= favo_book.title %><%= " (#{favo_book.subtitle})" if favo_book.subtitle.present? %></p>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+          <% if @review.emotion_like? %>
+            <div class="panel panel-success">
+            	<div class="panel-heading">
+            	  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>オススメ！
+              </div>
+          <% end %>
+          <% if @review.emotion_non? %>
+            <div class="panel panel-default">
+          <% end %>
+          <% if @review.emotion_hate? %>
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>やめとけ！
+              </div>
+          <% end %> 
+          <div class="panel-body panel-review-body">
+            <div class="row">
+              <div class="col-md-12 col-xs-6">
+                <div class="row">
+                  <div class="col-xs-12">
+                    評価：
+                    <% @review.point.times do %>
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

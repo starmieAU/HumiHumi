@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .btn {
-white-space: normal;
+  white-space: normal;
 }
 
 /* body */
@@ -28,13 +28,16 @@ footer {
 
 /* book */
 .books-item{
-  background-color: #faffff;
-  border: 1px solid #ddd;
   min-height:80px;
-  margin-bottom:5px;
+}
+.new-books .panel-book{
+  margin-bottom: 5px;
+}
+.panel-book .panel-book-body{
+  padding: 0px 15px;
 }
 .books-image-box{
-  background-color: #555;
+  background-color: #ddd;
 }
 .books-image{
   max-width: 100%;
@@ -47,10 +50,14 @@ p.books-title {
   -webkit-line-clamp: 3;
   overflow: hidden;
   padding-top:10px;
-  min-height: 80px;
+  min-height: 60px;
 }
 p.books-authors {
-
+  /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 /*book show 画面*/
@@ -77,4 +84,21 @@ p.books-authors {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.review-form{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 /* users */
+.panel-user{
+  
+}
+.panel-user .panel-user-body{
+  padding: 15px 15px 0px 15px;
+}
+p.favo-book {
+  margin-bottom: 0px;
+}
+.panel-favo-heading{
+  padding: 0 10px;
+}

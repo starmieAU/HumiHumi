@@ -22,8 +22,19 @@ class ReviewsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def new
-    @review = Review.new(book_id: params[:book_id])
+  def update
+    @review = Review.find(params[:id])
+        if @review.update(review_params)
+            flash[:success] = 'レビューが正常に投稿されました'
+            redirect_to @review 
+
+        else
+            flash.now[:danger] = 'レビューが投稿されませんでした'
+            render :edit
+            #:newはnew.html.erbを指している resources :messagesがよしなに
+        end
+
+    
   end
 
   def show
@@ -50,6 +61,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
   
   private
