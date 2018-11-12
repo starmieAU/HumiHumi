@@ -27,7 +27,7 @@
           <% if logged_in? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle pa-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<%= current_user.prof_name[1...15] + (current_user.prof_name.length > 15 ? "..." : "") %>さん
+								<%= current_user.prof_name[0...14] + (current_user.prof_name.length > 15 ? "..." : "") %>さん
 								<span class="caret">
                 </span>
               </a>
