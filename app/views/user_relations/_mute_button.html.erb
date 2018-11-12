@@ -1,0 +1,19 @@
+<% if logged_in? && current_user != user %>
+  <% if current_user.muting?(user) %>
+    <%= form_tag(user_relation_path(user.id), method: :delete) do %>
+      <%= hidden_field_tag :user_id, user.id %>
+      <%= hidden_field_tag :relation, 'mute' %>
+      <%= button_tag type: 'submit', class: 'btn btn-xs btn-danger btn-group-justified' do %>
+        ミュート中
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_tag(user_relations_path) do %>
+      <%= hidden_field_tag :user_id, user.id %>
+      <%= hidden_field_tag :relation, 'mute' %>
+      <%= button_tag type: 'submit', class: 'btn btn-xs btn-default btn-group-justified' do %>
+        ミュート
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %> 

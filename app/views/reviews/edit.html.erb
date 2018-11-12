@@ -53,8 +53,8 @@
                   <div class="form-group">
                     <%= f.label :point, '評価' %>
                     <div class="btn-group btn-group-justified" data-toggle="buttons">
-                      <label class="btn btn-default btn-xs <%= "active" if @review.point == nil %>">
-                        <%= f.radio_button :point, nil %>未設定
+                      <label class="btn btn-default btn-xs <%= "active" if @review.point == 0 %>">
+                        <%= f.radio_button :point, 0 %>未設定
                       </label>
                       <label class="btn btn-default btn-xs <%= "active" if @review.point == 1 %>">
                         <%= f.radio_button :point, 1 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>1
@@ -81,8 +81,8 @@
                   
                   <div class="form-group">
                     <div class="btn-group btn-group-justified" data-toggle="buttons">
-                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == nil %>">
-                        <%= f.radio_button :u_point, nil %>未設定
+                      <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 0 %>">
+                        <%= f.radio_button :u_point, 0 %>未設定
                       </label>
                       <label class="btn btn-default btn-xs <%= "active" if @review.u_point == 1 %>">
                         <%= f.radio_button :u_point, 1 %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>1
@@ -122,10 +122,9 @@
                       </label>
                     </div>
                   </div>
-                  <%= f.hidden_field :book_id, :value => @review.book_id %>
-                  <%= f.hidden_field :user_id, :value => current_user.id %>
-                  <%= f.hidden_field :favorite, :value => false %>   
-                  <%= f.hidden_field :micropost_f, :value => !(:review_10_char == "" && :review_text == "") %>   
+                  <%= f.hidden_field :book_id, {value: @review.book_id} %>
+                  <%= f.hidden_field :user_id, {value: current_user.id} %>
+                  <%= f.hidden_field :favorite, {value: false} %>   
                   <div class="form-group">
                     <%= f.label :user_memo, '自分用メモ(公開されません)' %>
                     <%= f.text_area :user_memo, size: "20x4", class: 'form-control', placeholder: "例)〇〇さんから勧められた。テレビで面白いと評判だった。" %>

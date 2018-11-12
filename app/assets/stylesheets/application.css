@@ -3,10 +3,17 @@
 .btn {
   white-space: normal;
 }
+.panel{
+  margin-bottom: 5px;
+}
+
 .panel-body-pa5{
   padding: 5px;
 }
-
+.btn-sm{
+  font-size: 10px;
+  padding: 5px 0px;
+}
 .size-18{
   font-size: 18px
 }
@@ -22,13 +29,13 @@ footer {
 .navbar {
   background-color: #b0ffc0;
 }
-.navbar-header img {
-  margin-top: 5px;
+.nav-img {
+  margin-top: 0px;
   height: 40px;
 }
+
 text.nav-logo{
   font-size: 28px;
-  margin:0px;
 }
 /* search */
 .search {
@@ -53,7 +60,7 @@ text.nav-logo{
   max-height: 150px;
 }
 p.books-title {
-  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  /* 文の行数を3行に保ち、最後に ... を追加するスタイル */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -109,7 +116,11 @@ p.books-authors {
   padding: 15px 15px 0px 15px;
 }
 p.favo-book {
-  margin-bottom: 0px;
+  /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;  margin-bottom: 0px;
 }
 .panel-favo-heading{
   padding: 0 10px;

@@ -1,0 +1,10 @@
+<%= render 'user_common', user: @user %>
+<%= render 'user_menu', user: @user %>
+<div class="row">
+  <div class="col-xs-12">
+    <% @shelves.each do |shelf| %>
+      <%= render 'reviews/review_chip', review: shelf %>
+    <% end %>
+    <%= paginate @shelves %>
+  </div>
+</div>

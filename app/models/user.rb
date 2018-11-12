@@ -1,5 +1,16 @@
 class User < ApplicationRecord
-  validates :prof_name, presence: true, length: { maximum: 50 }
+  #validates :prof_name, presence: true, length: { maximum: 50 }
+  validate :add_error_sample
+  
+  def add_error_sample
+    # auth_nameエラーメッセージ
+    if prof_name.length == 0
+      errors[:base] << "ユーザー名を入力してください。。"
+    elsif prof_name.length > 50
+      errors[:base] << "ユーザー名を50文字以内で入力してください。"
+    end
+  end
+  
   #user - book
   has_many :reviews
   has_many :has_books, through: :reviews, source: :book
@@ -9,7 +20,9 @@ class User < ApplicationRecord
     #私の三冊
   has_many :favorite_relations, -> { where(favorite: true) }, class_name: 'Review', foreign_key: 'user_id'
   has_many :favorite_books, through: :favorite_relations, source: :book
-  
+    #microposts
+  has_many :micropost_relations, -> { where(micropost_f: true) }, class_name: 'Review', foreign_key: 'user_id'
+
   #user - user #block未実装
   has_many :user_relations
   has_many :to_users, through: :user_relations, source: :to_user

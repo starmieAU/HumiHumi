@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+	<div class="panel-body panel-user-body">
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <div class="row">
+          <div class="col-xs-12">
+            <%= link_to user.prof_name,user_path(user) %>さん
+          </div>
+          <div class="col-xs-3">
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.image_url, class: 'books-image center-block img-circle' %>
+            <% end %>
+          </div>
+          <div class="col-xs-9">
+            <div class="panel panel-default panel-myfovo">
+            	<div class="panel-body panel-myfavo-body">
+                <% user.favorite_books.each do |favo_book| %>
+                  <%= link_to book_path(favo_book.isbn_13)  do %>
+                    <p class="favo-book"><%= favo_book.title %><%= " (#{favo_book.subtitle})" if favo_book.subtitle.present? %></p>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <%if user.prof_greeting.present? %>
+          自己紹介
+          <div class="panel panel-default">
+            <div class="panel-body panel-body-pa5 review-text">
+              <p class=""><%= simple_format user.prof_greeting[0..50] + (user.prof_greeting.length > 50 ? "..." : "") %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

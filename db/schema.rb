@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181110173315) do
+ActiveRecord::Schema.define(version: 20181112124100) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20181110173315) do
     t.boolean  "favorite",                     default: false, null: false
     t.integer  "read_status",    limit: 1,     default: 0,     null: false
     t.integer  "emotion",        limit: 1,     default: 2,     null: false
-    t.integer  "point"
+    t.integer  "point",                        default: 0
     t.string   "u_article",                    default: ""
-    t.integer  "u_point"
+    t.integer  "u_point",                      default: 0
     t.string   "review_10_char",               default: ""
     t.text     "review_text",    limit: 65535
     t.boolean  "review_caution",               default: false
@@ -68,8 +68,9 @@ ActiveRecord::Schema.define(version: 20181110173315) do
     t.string   "auth_name"
     t.string   "auth_nickname"
     t.string   "image_url"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "first_login_f",               default: false
   end
 
   add_foreign_key "reviews", "books"

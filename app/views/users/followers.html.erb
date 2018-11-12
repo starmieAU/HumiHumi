@@ -1,0 +1,10 @@
+<%= render 'user_common', user: @user %>
+<%= render 'user_menu', user: @user %>
+<div class="row">
+  <div class="col-xs-12">
+    <% @followers.each do |user| %>
+      <%= render 'user_chip', user: user %>
+    <% end %>
+    <%= paginate @followers %>
+  </div>
+</div>

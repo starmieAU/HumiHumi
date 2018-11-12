@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :review_find, only: [:edit, :update]
+  before_action :check, only: [:edit,:update]
+  
   def create
     @book = Book.find_or_initialize_by(isbn_13: params[:isbn_13])
 
@@ -23,18 +26,14 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = Review.find(params[:id])
-        if @review.update(review_params)
-            flash[:success] = 'レビューが正常に投稿されました'
-            redirect_to @review 
-
-        else
-            flash.now[:danger] = 'レビューが投稿されませんでした'
-            render :edit
-            #:newはnew.html.erbを指している resources :messagesがよしなに
-        end
-
-    
+    if @review.update(review_params)
+        @review.update(micropost_f: micropost_flag(@review))
+        flash[:success] = 'レビューが正常に投稿されました'
+        redirect_to @review 
+    else
+        flash.now[:danger] = 'レビューが投稿されませんでした'
+        render :edit
+    end
   end
 
   def show
@@ -61,7 +60,6 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
   end
   
   private
@@ -79,8 +77,25 @@ class ReviewsController < ApplicationController
       :review_10_char,
       :review_text,
       :review_caution,
-      :user_memo,
-      :micropost_f
+      :user_memo
     )
   end
+
+  private
+
+  def micropost_flag(review)
+    if review.review_10_char == "" && review.review_text == ""
+      false
+    else
+      true
+    end
+  end
+  
+  def review_find
+    @review = Review.find(params[:id])
+  end
+  def check
+    user_check(@review.user)
+  end
+  
 end

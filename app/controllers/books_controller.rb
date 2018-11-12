@@ -36,7 +36,9 @@ class BooksController < ApplicationController
     end
     redirect_back
   end
-  
+  def ranking
+    
+  end
   def show
     @book = Book.find_or_initialize_by(isbn_13: params[:id])
     @tab = params[:tab] || ""

@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-6 col-xs-12">
+    <ul class="nav nav-tabs">
+      <li class="<%= 'active' if current_page?(user_path(user)) %>"><%= link_to user_path(user) do %>詳細<% end %></li>
+      <li class="<%= 'active' if current_page?(shelves_user_path(user)) %>"><%= link_to shelves_user_path(user) do %>本棚<% end %></li>
+      <li class="<%= 'active' if current_page?(followings_user_path(user)) %>"><%= link_to followings_user_path(user) do %>フォロー<% end %></li>
+      <li class="<%= 'active' if current_page?(followers_user_path(user)) %>"><%= link_to followers_user_path(user) do %>フォロワー<% end %></li>
+    </ul>
+  </div>
+</div>

@@ -1,2 +1,40 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<% if (@user.first_login_f == false) %>
+<div class="panel panel-default">
+	<div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>FumiFumiへようこそ！</h3>
+        <p>ログイン本当にありがとうございます。</p>
+        <p>まず最初に<span class="red">ユーザー名(必須)</span>と<span class="red">自己紹介(任意)</span>の登録をお願いします。</p>
+        <p>その後に<%= link_to '書籍を検索', new_book_path %>してあなたの読書人生において特に影響を与えてくれた本を三冊選び「私の三冊」として登録してください。</p>
+      </div>
+    </div>
+  </div>
+</div><%= render 'user_common', user: @user %>
+
+<% end %>
+<div class="panel panel-default">
+	<div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_for(@user) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <p>twitterユーザー名：<%= @user.auth_name %></p>
+          <p>twitterニックネーム：@<%= @user.auth_nickname %></p>
+
+          <div class="form-group">
+            <%= f.label :prof_name, 'ユーザー名：' %>
+            <%= f.text_field :prof_name, class: 'form-control', placeholder: "サービス内で表示される名前です。" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :prof_greeting, '自己紹介：' %>
+            <%= f.text_area :prof_greeting, size: "20x5", class: 'form-control',placeholder: "例)好きな著者は○○さんです。ミステリーをよく読みます。等" %>
+          </div>
+          <%= f.hidden_field :first_login_f, {value: true} %>
+          <%= f.submit '情報更新', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

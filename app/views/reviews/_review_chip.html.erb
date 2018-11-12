@@ -36,27 +36,31 @@
             </div>
           <% end %>
         </div>
-        <div class="col-md-3 col-md-offset-3 col-xs-12">
-          <% unless review.point == 0 %>
-            評価：
-            <% review.point.times do %>
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            <% end %>
-            <% (5-review.point).times do %>
-            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="col-md-6 col-xs-12">
-          <% unless (review.u_article.blank? || review.u_point == 0) %>
-            <%= review.u_article %>：
-            <% review.u_point.times do %>
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            <% end %>
-            <% (5-review.u_point).times do %>
-            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-            <% end %>
-          <% end %>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-md-3 col-md-offset-3 col-xs-12">
+              <% unless review.point == 0 %>
+                評価：
+                <% review.point.times do %>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <% end %>
+                <% (5-review.point).times do %>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <% unless (review.u_article.blank? || review.u_point == 0) %>
+                <%= review.u_article %>：
+                <% review.u_point.times do %>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <% end %>
+                <% (5-review.u_point).times do %>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class="col-xs-12">
           <% if review.review_text.present? %>

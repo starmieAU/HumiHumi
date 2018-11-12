@@ -118,7 +118,7 @@
             </div>
             <div class="row">
               <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <% if @review.user_memo.present? %>
+                <% if @review.user == current_user && @review.user_memo.present? %>
                   自分用メモ
                   <div class="panel panel-default">
                   	<div class="panel-body panel-body-pa5 review-text">
