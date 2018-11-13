@@ -115,12 +115,27 @@ class User < ApplicationRecord
     auth_nickname = auth_hash[:info][:nickname]
     image_url = auth_hash[:info][:image].gsub('_normal', '')
 
-    User.find_or_create_by(provider: provider, uid: uid) do |user|
-      user.prof_name = auth_name
-      user.auth_name = auth_name
-      user.auth_nickname = auth_nickname
-      user.image_url = image_url
+    user = User.find_by(provider: provider, uid: uid)
+    
+    if user.present?
+      user.update(
+        auth_name: auth_name,
+        auth_nickname: auth_nickname,
+        image_url: image_url
+        )
+      User.find_by(provider: provider, uid: uid)
+    else
+      User.create(
+        provider: provider,
+        uid: uid,
+        prof_name: auth_name,
+        auth_name: auth_name,
+        auth_nickname: auth_nickname,
+        image_url: image_url
+        )
     end
+
+    
   end
   
 end
