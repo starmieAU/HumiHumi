@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :user_find_count, only: [:show, :edit, :update, :followers, :followings, :shelves]
-  before_action :check, only: [:edit,:update]
+  before_action :user_find_count, only: [:show, :edit, :update, :followers, :followings, :shelves, :tweet]
+  before_action :check, only: [:edit,:update, :tweet]
   def show
   end
   
@@ -31,7 +31,27 @@ class UsersController < ApplicationController
   def followers
     @followers = @user.followers.page(params[:page]).per(20)
   end
+
+  #tweet
+  def tweet
+    if logged_in?
+      client = Twitter::REST::Client.new do |config|
+        #applicationの設定
+        config.consumer_key = ENV["TWITTER_KEY"]
+        config.consumer_secret = ENV["TWITTER_SECRET"]
+        #ユーザー情報の設定
+        config.access_token         = current_user.token
+        config.access_token_secret  = current_user.secret
+      end
   
+      #Twitter投稿
+      client.update(params[:text])
+      flash[:success] = 'ツイートしました'
+    redirect_back(fallback_location: root_path)
+    end
+  end
+
+
   private
   
   def user_find_count

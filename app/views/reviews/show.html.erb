@@ -139,8 +139,10 @@
     <%= render 'edit_review_button', {book: @review.book,text: "再レビュー"} %>
     <p></p>
   </div>
-  <div class="col-xs-4 col-xs-offset-4">
-    <button class="btn btn-sm btn-default btn-group-justified">ツイート</button>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= render 'users/tweet_form',{review: @review} %>
+    </div>    
   </div>
 </div>
 

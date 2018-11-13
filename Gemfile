@@ -60,6 +60,8 @@ gem 'dotenv-rails'
 #oauth login
 gem 'omniauth'
 gem 'omniauth-twitter'
+#twitter
+gem 'twitter'
 #pagenate
 gem 'kaminari'
 #http control

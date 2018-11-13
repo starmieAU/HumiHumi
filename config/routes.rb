@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :followings
       get :followers
       get :shelves
+      post :tweet
     end
   end
   resources :user_relations, only: [:create, :destroy]
