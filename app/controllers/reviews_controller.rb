@@ -38,6 +38,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @tweet_data = get_tweet_data(@review)
   end
 
   def destroy
@@ -98,4 +99,11 @@ class ReviewsController < ApplicationController
     user_check(@review.user)
   end
   
+  def get_tweet_data(review)
+    {
+      title: "#{review.user.prof_name}さんのレビュー",
+      content: ( review.review_10_char == "" ? review.book.title : "【#{review.review_10_char}】"),
+      image_url: review.book.image_url
+    }
+  end
 end
