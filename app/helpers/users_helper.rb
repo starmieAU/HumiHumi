@@ -1,9 +1,26 @@
 module UsersHelper
   def tweet_str(review)
     if review.review_10_char.present?
-      "#{review.user.prof_name}さんの10文字レビュー\n\n【#{review.review_10_char}】\n#{review.book.title}\n#{request.url}"
+      str = "#{review.user.prof_name}さんの10文字レビュー"
     else
-      "#{review.user.prof_name}さんレビューページ\n#{review.book.title}\n\n#{request.url}"
+       str ="#{review.user.prof_name}さんレビューページ"
     end
+    str += "\n\n#{review.book.title} (#{review.book.authors})" + star(review) + "\n\n#humihumi\n#{request.url}"
+  end
+  
+  def star(review)
+    if review.point != 0
+      str = "\n評価："
+      review.point.times do
+        str += "☆"
+      end
+    end
+    if review.u_article != ""
+      str += "\n#{review.u_article}："
+      review.u_point.times do
+        str += "☆"
+      end
+    end
+    str
   end
 end
