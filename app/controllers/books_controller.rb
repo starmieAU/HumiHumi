@@ -18,7 +18,7 @@ class BooksController < ApplicationController
         results_author.each {|result| results << result }
       end
       results.each do |result|
-        book = Book.new(read(result))
+        book = Book.find_or_initialize_by(read(result))
         result_books << book
       end
     end
@@ -41,7 +41,8 @@ class BooksController < ApplicationController
   end
   def show
     @book = Book.find_or_initialize_by(isbn_13: params[:id])
-    @tab = params[:tab] || ""
+    @tab = params[:tab]
+    @tab ||= ""
     @short_reviews = @book.short_reviews.page(params[:page]).per(10)
     @long_reviews = @book.long_reviews.page(params[:page]).per(10)
 

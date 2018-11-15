@@ -8,10 +8,18 @@
       </div>
       <div class="col-xs-8 books-info">
         <%= link_to book_path(id: book.isbn_13) do %>
-          <p class="books-title lead"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
+          <p class="books-title size-18"><%= book.title%><%= " (#{book.subtitle})" if book.subtitle.present? %></p>
         <% end %>
         <p class="books-authors"><%= book.authors%></p>
+        <% if book.persisted? %>
+          <% count = book_counts(book)%>
+          <p class="size-8 book-count"><span class="label label-success">本棚：<%= count[:shelf_count] %></span>
+          <span class="label label-info">三冊：<%= count[:favorite_count] %></span>
+          <%= link_to book_path(id: book.isbn_13,tab: 'short') do %><span class="label label-warning">10：<%= count[:short_count] %></span><% end %>
+          <%= link_to book_path(id: book.isbn_13,tab: 'long') do %><span class="label label-warning">書：<%= count[:long_count] %></span></p><% end %>
+        <% end %>
       </div>
+      
     </div>
   </div>
 </div>

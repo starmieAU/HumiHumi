@@ -40,7 +40,19 @@
                 <p><%= "ISBN13：#{book.isbn_13}"%></p>
               </div>
               <div class="col-xs-12 book-info">
-                <p class="book-show-point"><%= "評価："%></p>
+              </div>
+              <div class="col-xs-12 book-info">
+                <% if book.persisted? %>
+                  <% average_point = average_point(book)%>
+                    <% if average_point.present? %>
+                      <p class="book-show-point">平均評価：<span class="glyphicon glyphicon-star" aria-hidden="true"></span><%= average_point %></p>
+                    <% end %>
+                  <% count = book_counts(book)%>
+                  <p class="size-8 book-count"><span class="label label-success">本棚：<%= count[:shelf_count] %></span>
+                  <span class="label label-info">三冊：<%= count[:favorite_count] %></span>
+                  <span class="label label-warning">10：<%= count[:short_count] %></span>
+                  <span class="label label-warning">書：<%= count[:long_count] %></span></p>
+                <% end %>
               </div>
             </div>
           </div>

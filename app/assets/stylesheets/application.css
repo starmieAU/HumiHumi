@@ -14,6 +14,9 @@
   font-size: 10px;
   padding: 5px 0px;
 }
+.size-8{
+  font-size:8px;
+}
 .size-18{
   font-size: 18px
 }
@@ -56,6 +59,7 @@ text.nav-logo{
   background-color: #ddd;
 }
 .books-image{
+  padding:5px 0px;
   max-width: 100%;
   max-height: 150px;
 }
@@ -63,10 +67,10 @@ p.books-title {
   /* 文の行数を3行に保ち、最後に ... を追加するスタイル */
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   padding-top:10px;
-  min-height: 60px;
+  min-height: 54px;
 }
 p.books-authors {
   /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
@@ -75,7 +79,9 @@ p.books-authors {
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
-
+.book-count .label{
+  padding: .1em .3em .1em;
+}
 /*book show 画面*/
 
 
