@@ -133,6 +133,6 @@ class ReviewsController < ApplicationController
   end
   
   def get_ranking(reviews)
-    reviews.group(:book_id).order(book_id: "DESC").limit(10).count(:book_id)
+    reviews.group(:book_id).order('count_book_id desc').limit(10).count(:book_id)
   end
 end
