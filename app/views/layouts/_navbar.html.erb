@@ -10,12 +10,34 @@
 				</button>
 	      <a class="navbar-left " href="/"><text class="nav-logo">Humi<img src="/images/logo.png" alt="HumiHumi" class="nav-img">Humi</text></a>
 			</div>
-			
+
 			<div class="collapse navbar-collapse" id="navbar_humihumi">
 				<ul class="nav navbar-nav">
-					<!--<li><a href="books/ranking">ランキング</a></li>-->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							タイムライン<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+          		<li><%= link_to '全体タイムライン', index_all_toppages_path %></li>
+              <li role="separator" class="divider"></li>
+          		<li><%= link_to 'あなたのタイムライン', root_path %></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							ランキング<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+          		<li><%= link_to '本棚登録数', rank_shelf_reviews_path %></li>
+              <li role="separator" class="divider"></li>
+          		<li><%= link_to '「私の三冊」登録数', rank_favorite_reviews_path %></li>
+              <li role="separator" class="divider"></li>
+          		<li><%= link_to '10文字レビュー数', rank_short_reviews_path %></li>
+              <li role="separator" class="divider"></li>
+          		<li><%= link_to '書評数', rank_long_reviews_path %></li>
+            </ul>
+          </li>
 					<!--<li><a href="newface">新着</a></li>-->
-					<li><a href="/">トップ</a></li>
 				</ul>
 				<%= form_tag(new_book_path, method: :get, class: "navbar-form navbar-left") do %>
 					<div class="form-group">
@@ -32,16 +54,13 @@
                 </span>
               </a>
               <ul class="dropdown-menu">
-                <li>
-                  <%= link_to 'マイページ', user_path(current_user) %>
-                </li>
+                <li><%= link_to 'マイページ', user_path(current_user) %></li>
                 <li role="separator" class="divider"></li>
-                <li>
-                  <%= link_to '本棚', shelves_user_path(current_user) %>
-                </li>
+                <li><%= link_to '本棚', shelves_user_path(current_user) %></li>
+                <li role="separator" class="divider"></li>
+            		<li><%= link_to 'ログアウト', '/signout' %></li>
               </ul>
             </li>
-            <li><%= link_to 'ログアウト', '/signout' %></li>
           <% else %>
             <li><%= link_to 'Twitterログイン', '/auth/twitter' %></li>
           <% end %>
