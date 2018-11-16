@@ -119,7 +119,7 @@ class User < ApplicationRecord
     
     user = User.find_by(provider: provider, uid: uid)
     unless user.present?
-      User.create(
+      user = User.create(
         provider: provider,
         uid: uid,
         prof_name: auth_name,

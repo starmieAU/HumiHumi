@@ -26,7 +26,7 @@
           <% end %>
           <p><%= review.book.authors %></p>
           <% count = book_counts(review.book)%>
-          <p class="size-8 book-count"><span class="label label-success">本棚：<%= count[:shelf_count] %></span>
+          <p class="size-10 book-count"><span class="label label-success">本棚：<%= count[:shelf_count] %></span>
           <span class="label label-info">三冊：<%= count[:favorite_count] %></span>
           <%= link_to book_path(id: review.book.isbn_13,tab: 'short') do %><span class="label label-warning">10：<%= count[:short_count] %></span><% end %>
           <%= link_to book_path(id: review.book.isbn_13,tab: 'long') do %><span class="label label-warning">書：<%= count[:long_count] %></span></p><% end %>
