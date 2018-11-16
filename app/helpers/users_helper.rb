@@ -9,8 +9,9 @@ module UsersHelper
   end
   
   def star(review)
+    str = ""
     if review.point != 0
-      str = "\n評価："
+      str += "\n評価："
       review.point.times do
         str += "☆"
       end
