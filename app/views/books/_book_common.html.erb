@@ -48,10 +48,12 @@
                       <p class="book-show-point">平均評価：<span class="glyphicon glyphicon-star" aria-hidden="true"></span><%= average_point %></p>
                     <% end %>
                   <% count = book_counts(book)%>
-                  <p class="size-10 book-count"><span class="label label-success">本棚：<%= count[:shelf_count] %></span>
-                  <span class="label label-info">三冊：<%= count[:favorite_count] %></span>
-                  <span class="label label-warning">10：<%= count[:short_count] %></span>
-                  <span class="label label-warning">書：<%= count[:long_count] %></span></p>
+                  <p class="size-10 book-count">
+                    <%= link_to shelf_users_book_path(id: book.isbn_13) do %><span class="label label-success">本棚：<%= count[:shelf_count] %></span><% end %>
+                    <%= link_to favorite_users_book_path(id: book.isbn_13) do %><span class="label label-info">三冊：<%= count[:favorite_count] %></span><% end %>
+                    <%= link_to book_path(id: book.isbn_13,tab: 'short') do %><span class="label label-warning">10：<%= count[:short_count] %></span><% end %>
+                    <%= link_to book_path(id: book.isbn_13,tab: 'long') do %><span class="label label-warning">書：<%= count[:long_count] %></span><% end %>
+                  </p>
                 <% end %>
               </div>
             </div>

@@ -48,8 +48,22 @@ class BooksController < ApplicationController
 
     unless @book.persisted?
       results = RakutenWebService::Books::Book.search(isbn: params[:id])
-
       @book = Book.new(read(results.first))
     end
   end
+  
+  def favorite_users
+    @book = Book.find_by(isbn_13: params[:id])
+    @users = @book.favorite_users.page(params[:page])
+    @text = '「私の三冊」に登録しているユーザー'
+    render 'users/index'
+  end
+  
+  def shelf_users
+    @book = Book.find_by(isbn_13: params[:id])
+    @users = @book.shelf_users.page(params[:page])
+    @text = '本棚に登録しているユーザー'
+    render 'users/index'
+  end
+  
 end

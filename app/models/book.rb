@@ -5,7 +5,9 @@ class Book < ApplicationRecord
   has_many :has_users, through: :reviews, source: :user
   
   has_many :favorite_relations, -> { where(favorite: true) }, class_name: 'Review', foreign_key: 'book_id'
+  has_many :favorite_users, through: :favorite_relations, source: :user
   has_many :shelf_relations, -> { where(favorite: false) }, class_name: 'Review', foreign_key: 'book_id'
+  has_many :shelf_users, through: :shelf_relations, source: :user
   #10-str-review
   has_many :short_reviews, -> { where.not(review_10_char: "") }, class_name: 'Review', foreign_key: 'book_id'
   #text-review

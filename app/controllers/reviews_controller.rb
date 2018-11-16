@@ -63,6 +63,33 @@ class ReviewsController < ApplicationController
   def edit
   end
   
+  def rank_shelf
+    @ranking = get_ranking(Review.where(favorite: false))
+    @text = '本棚登録数ランキング10'
+    render 'books/ranking'
+  end
+  
+  def rank_favorite
+    @ranking = get_ranking(Review.where(favorite: true))
+    @text = '「私の三冊」登録数ランキング10'
+    render 'books/ranking'
+  end
+  
+  def rank_short
+    @ranking = get_ranking(Review.where.not(review_10_char: ""))
+    @text = '10文字レビュー数ランキング10'
+    render 'books/ranking'
+  end
+  
+  def rank_long
+    @ranking = get_ranking(Review.where.not(review_text: ""))
+    @text = '書評数ランキング10'
+    render 'books/ranking'
+  end
+  
+  
+  
+  ###############
   private
 
   def review_params
@@ -81,9 +108,7 @@ class ReviewsController < ApplicationController
       :user_memo
     )
   end
-
-  private
-
+  
   def micropost_flag(review)
     if review.review_10_char == "" && review.review_text == ""
       false
@@ -105,5 +130,9 @@ class ReviewsController < ApplicationController
       content: "#{review.user.prof_name}さんのレビュー",
       image_url: review.book.image_url
     }
+  end
+  
+  def get_ranking(reviews)
+    reviews.group(:book_id).order(book_id: "DESC").limit(10).count(:book_id)
   end
 end

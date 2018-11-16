@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
   
   def index
+    @users = nil
   end
 
   def shelves
