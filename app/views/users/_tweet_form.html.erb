@@ -1,15 +1,24 @@
-<% if logged_in? %>
-  <div class="row">
+
+<div class="row">
+  <% if logged_in? %>
     <%= form_tag(tweet_user_path(current_user)) do %>
-      <div class="col-xs-12">
+      <div class="col-xs-10 col-xs-offset-1">
         <%= text_area_tag :text, tweet_str(review), size: "20x5", class: 'form-control' %>
         <p></p>
       </div>
       <div class="col-xs-4 col-xs-offset-4">
         <%= button_tag type: 'submit', class: 'btn btn-sm btn-info btn-group-justified' do %>
           ツイートする
-        <% end %>
-      </div>  
+        <% end %>  
+      </div>
     <% end %>
+  <% else %>
+  <div class="col-xs-10 col-xs-offset-1">
+    <%= text_area_tag :text, tweet_str(review), size: "20x7", class: 'form-control' %>
+    <p></p>
   </div>
-<% end %>  
+  <div class="col-xs-10 col-xs-offset-1">
+    <p>　　↑コピーしてTwitterでご利用できます。</p>
+  </div>
+  <% end %>
+</div>
