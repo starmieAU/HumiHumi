@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = nil
+    @users = Kaminari.paginate_array([]).page(params[:page]).per(10)
+    @text = "ユーザー表示"
   end
 
   def shelves
@@ -52,6 +53,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    if params[:keyword].present?
+      @users = User.where('prof_name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(20)
+    else
+      @users = Kaminari.paginate_array([]).page(params[:page]).per(10)
+    end
+  end
 
   private
   

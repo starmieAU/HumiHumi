@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       get :favorite_users
       get :shelf_users
     end
+    collection do
+      get :search_detail
+    end
   end
   resources :reviews, only: [:show, :edit, :destroy, :create, :index, :update] do
     collection do
@@ -28,6 +31,9 @@ Rails.application.routes.draw do
       get :followers
       get :shelves
       post :tweet
+    end
+    collection do
+      get :search
     end
   end
   resources :user_relations, only: [:create, :destroy]

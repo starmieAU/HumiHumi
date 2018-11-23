@@ -65,6 +65,10 @@ text.nav-logo{
 .panel-group .list-panel{
   margin-bottom: -2px;
 }
+
+.list-group-item p{
+  margin-top: 8px;
+}
 /* search */
 .search {
   margin-bottom: 20px;

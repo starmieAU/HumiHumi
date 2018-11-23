@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="header-navi">
       <a class="nav-logo text-left" href="/"><text class="nav-logo">Humi<img src="/images/logo.png" alt="HumiHumi" class="nav-img">Humi</text></a>
-      <div class=" pull-right">
+      <div class="pull-right">
         <a class="btn btn-default" data-toggle="collapse" data-parent="#navbar" href="#search">
           <span class="glyphicon glyphicon-search"></span>
         </a>
@@ -28,14 +28,15 @@
                 <a class="list-group-item list-main">
                   <span class="glyphicon glyphicon-search"></span>検索メニュー
                 </a>
-                <%= form_tag(new_book_path, method: :get, class: "list-group-item list-sub text-center") do %>
+                <%= form_tag(new_book_path, method: :get, class: "list-group-item list-sub text-center form-inline") do %>
+                  <p class="pull-left hidden-xs">通常検索</p>
                   <div class="form-group">
                     <%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "キーワードを入力", size: 40 %>
                   </div>
                   <%= submit_tag '書籍を検索', class: 'btn btn-success' %>
                 <% end %>
-                <%#= link_to '詳細検索', XXX_path , class: "list-group-item list-sub" %>
-                <%#= link_to 'ユーザー検索', XXX_path , class: "list-group-item list-sub" %>
+                <%= link_to '詳細検索', search_detail_books_path , class: "list-group-item list-sub" %>
+                <%= link_to 'ユーザー検索', search_users_path , class: "list-group-item list-sub" %>
               </div>
             </div>
             <% if logged_in? %>

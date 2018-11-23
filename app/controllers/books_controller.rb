@@ -5,7 +5,8 @@ class BooksController < ApplicationController
     results = []
     if @keyword.present?
       #@books = Book.new.search_google_books(@keyword)
-      2.times do |i|
+      #繰り返す必要あるか？ 1.timesで30*2件取得
+      1.times do |i|
         results_title = RakutenWebService::Books::Book.search({
           title: @keyword,
           page: i+1
@@ -25,6 +26,28 @@ class BooksController < ApplicationController
     @books = Kaminari.paginate_array(result_books).page(params[:page]).per(10)
   end
   
+  def search_detail
+    keywords = {}
+    @title = params[:title]
+    @author = params[:author]
+    @isbn = params[:isbn]
+    
+    keywords[:title] = @title if @title.present?
+    keywords[:author] = @author if @author.present?
+    keywords[:isbn] = @isbn if @isbn.present?
+    result_books = []
+    results = []
+    if keywords.present?
+      #@books = Book.new.search_google_books(@keyword)
+      results = RakutenWebService::Books::Book.search(keywords)
+      results.each do |result|
+        book = Book.find_or_initialize_by(read(result))
+        result_books << book
+      end
+    end
+    @books = Kaminari.paginate_array(result_books).page(params[:page]).per(10)
+  end
+  
   def create
     @book = Book.find_or_initialize_by(isbn_13: params[:isbn_13])
 
@@ -36,9 +59,7 @@ class BooksController < ApplicationController
     end
     redirect_back
   end
-  def ranking
-    
-  end
+
   def show
     @book = Book.find_or_initialize_by(isbn_13: params[:id])
     @tab = params[:tab]

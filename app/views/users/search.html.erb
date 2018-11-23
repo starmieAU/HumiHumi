@@ -1,0 +1,22 @@
+<div class="search">
+  <div class="row">
+    <div class = "col-xs-12">
+      <div class="text-center">
+        <%= form_tag(search_users_path, method: :get, class: '') do %>
+          <div class="form-group">
+            <%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "ユーザー名を入力", size: 40 %>
+          </div>
+          <%= submit_tag 'ユーザーを検索', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <% @users.each do |user| %>
+      <%= render 'users/user_chip', user: user %>
+    <% end %>
+    <%= paginate @users %>
+  </div>
+</div>
