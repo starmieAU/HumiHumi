@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :toppages, only: [:index] do
     collection do
-      get :index_all
+      get :index_users
     end
   end
   root 'toppages#index'

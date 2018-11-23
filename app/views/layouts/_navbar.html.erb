@@ -11,7 +11,7 @@
           	<span class="glyphicon glyphicon-user"></span>
           </a>
       	<% else %>
-          <%= link_to 'Login', '/auth/twitter' ,{ class: "btn btn-default" }%>
+          <%= link_to 'Login', '/auth/twitter' , class: "btn btn-default" %>
       	<% end %>
         <a class="btn btn-default" data-toggle="collapse" data-parent="#navbar" href="#etcmenu">
         	<span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -34,8 +34,8 @@
                   </div>
                   <%= submit_tag '書籍を検索', class: 'btn btn-success' %>
                 <% end %>
-                <%#= link_to '詳細検索', XXX_path ,{ class: "list-group-item list-sub" }%>
-                <%#= link_to 'ユーザー検索', XXX_path ,{ class: "list-group-item list-sub" }%>
+                <%#= link_to '詳細検索', XXX_path , class: "list-group-item list-sub" %>
+                <%#= link_to 'ユーザー検索', XXX_path , class: "list-group-item list-sub" %>
               </div>
             </div>
             <% if logged_in? %>
@@ -44,10 +44,10 @@
                   <a class="list-group-item list-main">
                     <span class="glyphicon glyphicon-user"></span>ユーザーメニュー
                   </a>
-                  <%= link_to 'マイページ', user_path(current_user) ,{ class: "list-group-item list-sub" }%>
-                  <%= link_to '本棚', shelves_user_path(current_user) ,{ class: "list-group-item list-sub" }%>
-                  <%= link_to 'あなたのタイムライン', root_path ,{ class: "list-group-item list-sub" }%>
-                  <%= link_to 'ログアウト', '/signout' ,{ class: "list-group-item list-sub" }%>
+                  <%= link_to 'マイページ', user_path(current_user) , class: "list-group-item list-sub" %>
+                  <%= link_to '本棚', shelves_user_path(current_user) , class: "list-group-item list-sub" %>
+                  <%= link_to 'あなたのタイムライン', index_users_toppages_path, class: "list-group-item list-sub" %>
+                  <%= link_to 'ログアウト', signout_path , class: "list-group-item list-sub", data: { confirm: 'ログアウトしますか？' }%>
                 </div>
               </div>
             <% end %>
@@ -62,14 +62,14 @@
                 <div class="panel">
                   <div id="ranking" class="panel-collapse collapse">
                     <div class="list-group">
-                      <%= link_to '本棚登録数', rank_shelf_reviews_path ,{ class: "list-group-item" }%>
-                      <%= link_to '「私の三冊」登録数', rank_favorite_reviews_path ,{ class: "list-group-item" }%>
-                      <%= link_to '10文字レビュー数', rank_short_reviews_path ,{ class: "list-group-item" }%>
-                      <%= link_to '書評数', rank_long_reviews_path ,{ class: "list-group-item" }%>
+                      <%= link_to '本棚登録数', rank_shelf_reviews_path , class: "list-group-item" %>
+                      <%= link_to '「私の三冊」登録数', rank_favorite_reviews_path , class: "list-group-item" %>
+                      <%= link_to '10文字レビュー数', rank_short_reviews_path , class: "list-group-item" %>
+                      <%= link_to '書評数', rank_long_reviews_path , class: "list-group-item" %>
                     </div>
                   </div>
                 </div>
-                <%= link_to 'HumiHumiとは', humihumi_path ,{ class: "list-group-item list-sub" } %>
+                <%= link_to 'HumiHumiとは', humihumi_path , class: "list-group-item list-sub"  %>
 <!--                <a class=" list-group-item list-sub" data-toggle="collapse" data-parent="#etc-ccordion" href="#アコーディオンメニュー">
                   メニューヘッド
                 </a>
