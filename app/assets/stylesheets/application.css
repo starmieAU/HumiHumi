@@ -48,7 +48,7 @@ text.nav-logo{
   font-size: 28px;
 }
 .header-navi .btn-default{
-  margin: 4px 1px;
+  margin: 3px 1px 2px 1px;
   color: #FFF;
   background-color: #6F6;
   border-color: #3d3;
@@ -60,6 +60,10 @@ text.nav-logo{
 
 .list-sub{
   background-color: #efe;
+}
+
+.panel-group .list-panel{
+  margin-bottom: -2px;
 }
 /* search */
 .search {
