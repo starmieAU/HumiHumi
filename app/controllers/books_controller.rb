@@ -22,6 +22,8 @@ class BooksController < ApplicationController
         book = Book.find_or_initialize_by(read(result))
         result_books << book
       end
+    else
+      @noinput = true
     end
     @books = Kaminari.paginate_array(result_books).page(params[:page]).per(10)
   end
@@ -44,7 +46,10 @@ class BooksController < ApplicationController
         book = Book.find_or_initialize_by(read(result))
         result_books << book
       end
+    else
+      @noinput = true
     end
+    
     @books = Kaminari.paginate_array(result_books).page(params[:page]).per(10)
   end
   

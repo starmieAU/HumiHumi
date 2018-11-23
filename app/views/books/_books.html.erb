@@ -13,14 +13,4 @@
       <%= paginate @books %>
     </div>
   </div>
-<% else %>
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>検索結果は０件です。</h3>
-      <p>申し訳ありませんが入力に間違いがないか確認してください。</p>
-      <p>あいまい検索には対応できていません。</p>
-      <p><%= link_to '詳細検索', new_book_path %>では「書籍タイトル」または「著者名」で検索しています。</p>
-      <p><%= link_to '詳細検索', search_detail_books_path %>では「書籍タイトル」、「著者名」、「ISBN13」を組み合わせた検索が可能です。</p>
-    </div>
-  </div>
 <% end %>
