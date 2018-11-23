@@ -1,73 +1,92 @@
 <header>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_humihumi">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-	      <a class="navbar-left " href="/"><text class="nav-logo">Humi<img src="/images/logo.png" alt="HumiHumi" class="nav-img">Humi</text></a>
-			</div>
-
-			<div class="collapse navbar-collapse" id="navbar_humihumi">
-				<ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							タイムライン<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-          		<li><%= link_to '全体タイムライン', index_all_toppages_path %></li>
-              <li role="separator" class="divider"></li>
-          		<li><%= link_to 'あなたのタイムライン', root_path %></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							ランキング<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-          		<li><%= link_to '本棚登録数', rank_shelf_reviews_path %></li>
-              <li role="separator" class="divider"></li>
-          		<li><%= link_to '「私の三冊」登録数', rank_favorite_reviews_path %></li>
-              <li role="separator" class="divider"></li>
-          		<li><%= link_to '10文字レビュー数', rank_short_reviews_path %></li>
-              <li role="separator" class="divider"></li>
-          		<li><%= link_to '書評数', rank_long_reviews_path %></li>
-            </ul>
-          </li>
-					<!--<li><a href="newface">新着</a></li>-->
-				</ul>
-				<%= form_tag(new_book_path, method: :get, class: "navbar-form navbar-left") do %>
-					<div class="form-group">
-						<%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "キーワードを入力", size: 40 %>
-					</div>
-					<%= submit_tag '書籍を検索', class: 'btn btn-success' %>
-				<% end %>
-        <ul class="nav navbar-nav navbar-right">
-          <% if logged_in? %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle pa-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<%= current_user.prof_name[0...14] + (current_user.prof_name.length > 15 ? "..." : "") %>さん
-								<span class="caret">
-                </span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'マイページ', user_path(current_user) %></li>
-                <li role="separator" class="divider"></li>
-                <li><%= link_to '本棚', shelves_user_path(current_user) %></li>
-                <li role="separator" class="divider"></li>
-            		<li><%= link_to 'ログアウト', '/signout' %></li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to 'Twitterログイン', '/auth/twitter' %></li>
-          <% end %>
-          <li><%= link_to 'HumiHumiとは', humihumi_path %></li>
-        </ul>
-        
-			</div>
-		</div>
-	</nav>
+  <div class="container-fluid">
+    <div class="header-navi">
+      <a class="nav-logo text-left" href="/"><text class="nav-logo">Humi<img src="/images/logo.png" alt="HumiHumi" class="nav-img">Humi</text></a>
+      <div class=" pull-right">
+        <a class="btn btn-default" data-toggle="collapse" data-parent="#navbar" href="#search">
+          <span class="glyphicon glyphicon-search"></span>
+        </a>
+        <% if logged_in? %>
+          <a class="btn btn-default" data-toggle="collapse" data-parent="#navbar" href="#usermenu">
+          	<span class="glyphicon glyphicon-user"></span>
+          </a>
+      	<% else %>
+          <%= link_to 'Login', '/auth/twitter' ,{ class: "btn btn-default" }%>
+      	<% end %>
+        <a class="btn btn-default" data-toggle="collapse" data-parent="#navbar" href="#etcmenu">
+        	<span class="glyphicon glyphicon-menu-hamburger"></span>
+        </a>
+      </div>
+    </div>
+    <!-- list menu -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel-group" id="navbar">
+          <div class="panel panel-default nav-panel">
+            <div id="search" class="panel-collapse collapse">
+              <div class="list-group">
+                <a class="list-group-item list-main">
+                  <span class="glyphicon glyphicon-search"></span>検索メニュー
+                </a>
+                <%= form_tag(new_book_path, method: :get, class: "list-group-item list-sub text-center") do %>
+                  <div class="form-group">
+                    <%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "キーワードを入力", size: 40 %>
+                  </div>
+                  <%= submit_tag '書籍を検索', class: 'btn btn-success' %>
+                <% end %>
+                <%#= link_to '詳細検索', XXX_path ,{ class: "list-group-item list-sub" }%>
+                <%#= link_to 'ユーザー検索', XXX_path ,{ class: "list-group-item list-sub" }%>
+              </div>
+            </div>
+            <% if logged_in? %>
+              <div id="usermenu" class="panel-collapse collapse">
+                <div class="list-group">
+                  <a class="list-group-item list-main">
+                    <span class="glyphicon glyphicon-user"></span>ユーザーメニュー
+                  </a>
+                  <%= link_to 'マイページ', user_path(current_user) ,{ class: "list-group-item list-sub" }%>
+                  <%= link_to '本棚', shelves_user_path(current_user) ,{ class: "list-group-item list-sub" }%>
+                  <%= link_to 'あなたのタイムライン', root_path ,{ class: "list-group-item list-sub" }%>
+                  <%= link_to 'ログアウト', '/signout' ,{ class: "list-group-item list-sub" }%>
+                </div>
+              </div>
+            <% end %>
+            <div id="etcmenu" class="panel-collapse collapse">
+              <div class="list-group panel-group" id="etc-ccordion">
+                <a class="list-group-item list-main">
+                  一般メニュー
+                </a>
+                <a class="list-group-item list-sub" data-toggle="collapse" data-parent="#etc-ccordion" href="#ranking">
+                  <span class="glyphicon glyphicon-stats"></span>ランキング<span class="caret"></span>
+                </a>
+                <div class="panel">
+                  <div id="ranking" class="panel-collapse collapse">
+                    <div class="list-group">
+                      <%= link_to '本棚登録数', rank_shelf_reviews_path ,{ class: "list-group-item" }%>
+                      <%= link_to '「私の三冊」登録数', rank_favorite_reviews_path ,{ class: "list-group-item" }%>
+                      <%= link_to '10文字レビュー数', rank_short_reviews_path ,{ class: "list-group-item" }%>
+                      <%= link_to '書評数', rank_long_reviews_path ,{ class: "list-group-item" }%>
+                    </div>
+                  </div>
+                </div>
+                <%= link_to 'HumiHumiとは', humihumi_path ,{ class: "list-group-item list-sub" } %>
+<!--                <a class=" list-group-item list-sub" data-toggle="collapse" data-parent="#etc-ccordion" href="#アコーディオンメニュー">
+                  メニューヘッド
+                </a>
+                <div class="panel">
+                  <div id="アコーディオンメニュー" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      何か内容
+                    </div>
+                  </div>
+                </div>
+-->
+              </div>
+            </div>
+          </div>	
+      	</div>
+      </div>
+    </div>
+  </div>
 </header>
+

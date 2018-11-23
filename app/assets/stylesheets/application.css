@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.container-fluid{
+  padding:0px;
+}
+
 .btn {
   white-space: normal;
 }
@@ -29,16 +33,33 @@ footer {
 }
 
 /* navbar */
-.navbar {
-  background-color: #b0ffc0;
+.header-navi {
+  background-color: #6F6;
 }
 .nav-img {
-  margin-top: 0px;
+  margin-top: -10px;
   height: 40px;
 }
-
+.header-navi .nav-logo {
+  padding:0px;
+  margin-left: 5px;
+}
 text.nav-logo{
   font-size: 28px;
+}
+.header-navi .btn-default{
+  margin: 4px 1px;
+  color: #FFF;
+  background-color: #6F6;
+  border-color: #3d3;
+}
+
+.list-main{
+  background-color: #cfc;
+}
+
+.list-sub{
+  background-color: #efe;
 }
 /* search */
 .search {
