@@ -54,6 +54,12 @@ text.nav-logo{
   border-color: #3d3;
 }
 
+.list-row{
+  margin: 0px;
+}
+.list-col{
+  padding: 0px;
+}
 .list-main{
   background-color: #cfc;
 }
