@@ -4,7 +4,7 @@
       <div class="text-center">
         <%= form_tag(search_users_path, method: :get, class: 'form-inline') do %>
           <div class="form-group">
-            <%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "ユーザー名を入力", size: 40 %>
+            <%= text_field_tag :keyword, @keyword, class: 'form-control input-lg', placeholder: "ユーザー名を入力", size: 40 %>
           </div>
           <%= submit_tag 'ユーザーを検索', class: 'btn btn-success' %>
         <% end %>

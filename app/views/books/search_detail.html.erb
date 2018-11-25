@@ -4,13 +4,13 @@
       <div class="text-center">
         <%= form_tag(search_detail_books_path, method: :get, class: '') do %>
           <div class="form-group">
-            <%= text_field_tag :title, @title, class: 'form-control input-md', placeholder: "本のタイトルを入力", size: 40 %>
+            <%= text_field_tag :title, @title, class: 'form-control input-md input-lg', placeholder: "本のタイトルを入力", size: 40 %>
           </div>
           <div class="form-group">
-            <%= text_field_tag :author, @author, class: 'form-control input-md', placeholder: "著者名を入力", size: 40 %>
+            <%= text_field_tag :author, @author, class: 'form-control input-md input-lg', placeholder: "著者名を入力", size: 40 %>
           </div>
           <div class="form-group">
-            <%= text_field_tag :isbn, @isbn, class: 'form-control input-md', placeholder: "ISBN13コードを入力", size: 40 %>
+            <%= text_field_tag :isbn, @isbn, class: 'form-control input-md input-lg', placeholder: "ISBN13コードを入力", size: 40 %>
           </div>
           <%= submit_tag '書籍を検索', class: 'btn btn-success btn-md' %>
         <% end %>

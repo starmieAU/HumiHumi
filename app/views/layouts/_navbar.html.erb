@@ -31,7 +31,7 @@
                 <%= form_tag(new_book_path, method: :get, class: "list-group-item list-sub text-center form-inline") do %>
                   <p class="pull-left hidden-xs">通常検索</p>
                   <div class="form-group">
-                    <%= text_field_tag :keyword, @keyword, class: 'form-control', placeholder: "キーワードを入力", size: 40 %>
+                    <%= text_field_tag :keyword, @keyword, class: 'form-control input-lg', placeholder: "キーワードを入力", size: 40 %>
                   </div>
                   <%= submit_tag '書籍を検索', class: 'btn btn-success' %>
                 <% end %>
