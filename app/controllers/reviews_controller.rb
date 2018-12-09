@@ -126,6 +126,7 @@ class ReviewsController < ApplicationController
   
   def get_tweet_data(review)
     {
+      card: "summary",
       title: ( review.review_10_char == "" ? "#{review.book.title}" : "【#{review.review_10_char}】"),
       content: "#{review.user.prof_name}さんのレビュー",
       image_url: review.book.image_url
