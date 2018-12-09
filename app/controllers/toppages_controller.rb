@@ -22,7 +22,7 @@ class ToppagesController < ApplicationController
       card: "summary_large_image",
       title: "書籍レビューサイト【HumiHumi】",
       content: "次の本は何を読もうか？HumiHumiで「私の三冊」「10文字レビュー」等ユニークな機能を使ってみんなのレビューを見てみよう！",
-      image_url: "/images/top_image.png"
+      image_url: "https://www.humihumi.net/images/top_image.png"
     }
   end
   
